@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/enterflight/ce-srv-minecraft-paper#readme",
   "dependencies": {
+    "minecraft-data": "^3.101.0",
     "mineflayer": "^4.33.0"
   }
 }

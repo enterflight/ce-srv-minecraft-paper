@@ -8,6 +8,7 @@ RUN git config --global user.email "engineering@enterflight.xyz"
 WORKDIR /tmp
 
 RUN git clone https://github.com/PaperMC/Paper.git
+RUN git checkout ver/1.21.8
 WORKDIR /tmp/Paper
 
 RUN /bin/bash /tmp/Paper/gradlew applyPatches
