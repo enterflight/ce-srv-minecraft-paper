@@ -1,0 +1,26 @@
+{
+  "name": "ce-srv-minecraft-paper",
+  "version": "1.0.0",
+  "description": "Rolling release of PaperMC built by Enterflight.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enterflight/ce-srv-minecraft-paper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enterflight/ce-srv-minecraft-paper/issues"
+  },
+  "homepage": "https://github.com/enterflight/ce-srv-minecraft-paper#readme",
+  "dependencies": {
+    "mineflayer": "^4.33.0"
+  }
+}
