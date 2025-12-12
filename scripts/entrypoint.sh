@@ -63,7 +63,7 @@ if [[ "${DIAG_MODE^^}" == "TRUE" ]]; then
     if [ ! -f "$PROMETHEUS_CONFIG" ]; then
         mkdir -p $(dirname "$PROMETHEUS_CONFIG")
         echo "host: 0.0.0.0" > "$PROMETHEUS_CONFIG"
-        echo "port: 9090" >> "$PROMETHEUS_CONFIG"
+        echo "port: 9225" >> "$PROMETHEUS_CONFIG"
         echo "enable_metrics: true" >> "$PROMETHEUS_CONFIG"
     fi
 else
