@@ -47,15 +47,16 @@ else
     echo "[Community] WARNING: Stock directory $STOCK_DIR not found. Skipping seed."
 fi
 
-ONLINE_MODE="${ONLINE_MODE:-TRUE}"
+DIAG_MODE="${DIAG_MODE:-TRUE}"
 
-if [[ "${ONLINE_MODE^^}" == "FALSE" ]]; then
-    echo "[Entrypoint] WARNING: ONLINE_MODE is FALSE. Authentication disabled!"
-    echo "[Entrypoint] Unverified users can connect. UUIDs will be generated offline."
+if [[ "${DIAG_MODE^^}" == "TRUE" ]]; then
+    echo "[Entrypoint] WARNING: DIAG_MODE is TRUE. Nasty things may happen in production!"
+    echo "[Entrypoint] Unverified users can connect. UUIDs will be generated offline. There is no throttle on connections."
     
     # Use sed to enforce online-mode=false
     # We use 's/^online-mode=.*/.../' to find the line starting with online-mode and replace it
     sed -i 's/^online-mode=.*/online-mode=false/' "${DATA_DIR}/server.properties"
+    sed -i 's/connection-throttle=.*/connection-throttle=-1/' "${DATA_DIR}/bukkit.yml"
 else
     echo "[Entrypoint] Enforcing Online Mode (Secure)."
     sed -i 's/^online-mode=.*/online-mode=true/' "${DATA_DIR}/server.properties"
