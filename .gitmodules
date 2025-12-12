@@ -1,3 +1,6 @@
 [submodule "tests"]
 	path = tests
 	url = git@github.com:enterflight/tests-minecraft.git
+[submodule "configs"]
+	path = configs
+	url = https://github.com/enterflight/ce-configs-minecraft.git
