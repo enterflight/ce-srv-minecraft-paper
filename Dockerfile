@@ -19,6 +19,8 @@ FROM ghcr.io/enterflight/ce-srv-minecraft-core:main AS final
 
 RUN mkdir /opt/minecraft
 COPY --from=build /tmp/Paper/paper-server/build/libs/paper-bundler-*-mojmap.jar /opt/minecraft/server.jar
+ADD https://github.com/sladkoff/minecraft-prometheus-exporter/releases/download/v2.5.0/prometheus-exporter-2.5.0.jar \
+    /opt/minecraft/certified/plugins/prometheus-exporter.jar
 
 RUN mkdir -p /opt/minecraft/community
 COPY configs/* /opt/minecraft/community/

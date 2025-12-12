@@ -57,6 +57,15 @@ if [[ "${DIAG_MODE^^}" == "TRUE" ]]; then
     # We use 's/^online-mode=.*/.../' to find the line starting with online-mode and replace it
     sed -i 's/^online-mode=.*/online-mode=false/' "${DATA_DIR}/server.properties"
     sed -i 's/connection-throttle: .*/connection-throttle: -1/' "${DATA_DIR}/bukkit.yml"
+    mkdir -p "${DATA_DIR}/plugins"
+    cp "/opt/minecraft/certified/plugins/prometheus-exporter.jar" "${DATA_DIR}/plugins/"
+    PROMETHEUS_CONFIG="${DATA_DIR}/plugins/PrometheusExporter/config.yml"
+    if [ ! -f "$PROMETHEUS_CONFIG" ]; then
+        mkdir -p $(dirname "$PROMETHEUS_CONFIG")
+        echo "host: 0.0.0.0" > "$PROMETHEUS_CONFIG"
+        echo "port: 9225" >> "$PROMETHEUS_CONFIG"
+        echo "enable_metrics: true" >> "$PROMETHEUS_CONFIG"
+    fi
 else
     echo "[Entrypoint] Enforcing Online Mode (Secure)."
     sed -i 's/^online-mode=.*/online-mode=true/' "${DATA_DIR}/server.properties"
