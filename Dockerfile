@@ -16,7 +16,7 @@ RUN /bin/bash /tmp/Paper/gradlew createMojmapBundlerJar
 FROM ghcr.io/enterflight/ce-srv-minecraft-core:main AS final
 
 RUN mkdir /opt/minecraft
-COPY --from=build /tmp/Paper/paper-server/build/libs/paper-server-1.21.11-R0.1-SNAPSHOT.jar /opt/minecraft/server.jar
+COPY --from=build /tmp/Paper/paper-server/build/libs/paper-bundler-*-mojmap.jar /opt/minecraft/server.jar
 
 COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
