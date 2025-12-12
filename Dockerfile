@@ -20,6 +20,9 @@ FROM ghcr.io/enterflight/ce-srv-minecraft-core:main AS final
 RUN mkdir /opt/minecraft
 COPY --from=build /tmp/Paper/paper-server/build/libs/paper-bundler-*-mojmap.jar /opt/minecraft/server.jar
 
+RUN mkdir -p /opt/minecraft/community
+COPY configs/* /opt/minecraft/community/
+
 COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
