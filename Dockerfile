@@ -17,4 +17,15 @@ FROM ghcr.io/enterflight/ce-srv-minecraft-core:main AS final
 
 RUN mkdir /opt/minecraft
 COPY --from=build /tmp/Paper/paper-server/build/libs/paper-server-1.21.11-R0.1-SNAPSHOT.jar /opt/minecraft/server.jar
-WORKDIR /opt/minecraft
+
+COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+WORKDIR /data
+
+# Define the entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+# Default command (can be empty since entrypoint handles it, 
+# but good practice to leave CMD empty or as arguments to entrypoint)
+CMD []
