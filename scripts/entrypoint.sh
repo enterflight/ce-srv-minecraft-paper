@@ -56,7 +56,7 @@ if [[ "${DIAG_MODE^^}" == "TRUE" ]]; then
     # Use sed to enforce online-mode=false
     # We use 's/^online-mode=.*/.../' to find the line starting with online-mode and replace it
     sed -i 's/^online-mode=.*/online-mode=false/' "${DATA_DIR}/server.properties"
-    sed -i 's/connection-throttle=.*/connection-throttle=-1/' "${DATA_DIR}/bukkit.yml"
+    sed -i 's/connection-throttle: .*/connection-throttle: -1/' "${DATA_DIR}/bukkit.yml"
 else
     echo "[Entrypoint] Enforcing Online Mode (Secure)."
     sed -i 's/^online-mode=.*/online-mode=true/' "${DATA_DIR}/server.properties"
