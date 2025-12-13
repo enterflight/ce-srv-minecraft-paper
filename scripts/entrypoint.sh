@@ -70,7 +70,6 @@ if [[ "${DIAG_MODE^^}" == "TRUE" ]]; then
         echo "[Entrypoint] Enforcing Online Mode (Secure)."
         sed -i 's/^online-mode=.*/online-mode=true/' "${DATA_DIR}/server.properties"
     fi
-    cp "${DATA_DIR}/ops.json" "/data/ops.json"
 
 # Ensure logs directory exists
 mkdir -p "${DATA_DIR}/logs"
