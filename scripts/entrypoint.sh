@@ -47,7 +47,7 @@ else
     echo "[Community] WARNING: Stock directory $STOCK_DIR not found. Skipping seed."
 fi
 
-DIAG_MODE="${DIAG_MODE:-TRUE}"
+DIAG_MODE="${DIAG_MODE:-FALSE}"
 
 if [[ "${DIAG_MODE^^}" == "TRUE" ]]; then
     echo "[Entrypoint] WARNING: DIAG_MODE is TRUE. Nasty things may happen in production!"
@@ -66,10 +66,11 @@ if [[ "${DIAG_MODE^^}" == "TRUE" ]]; then
         echo "port: 9225" >> "$PROMETHEUS_CONFIG"
         echo "enable_metrics: true" >> "$PROMETHEUS_CONFIG"
     fi
-else
-    echo "[Entrypoint] Enforcing Online Mode (Secure)."
-    sed -i 's/^online-mode=.*/online-mode=true/' "${DATA_DIR}/server.properties"
-fi
+    else
+        echo "[Entrypoint] Enforcing Online Mode (Secure)."
+        sed -i 's/^online-mode=.*/online-mode=true/' "${DATA_DIR}/server.properties"
+    fi
+    cp "${DATA_DIR}/ops.json" "/data/ops.json"
 
 # Ensure logs directory exists
 mkdir -p "${DATA_DIR}/logs"
